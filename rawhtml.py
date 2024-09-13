@@ -36,24 +36,9 @@ def render_with_rawhtml(markdown):
         return renderer.render(Document(markdown))
     
 def main():
-# Test the extension
-    markdown_text = """
-# Example 1
-
-{< div class="navlink" >}
-
-- [Home](README)
-- [[Jankifiers]]
-
-{< /div >}
-
-## Example 2
-{< p style="color:blue;" >}
-This is red!
-{< /p >}
-
-The End!  
-"""
+    with open('rawhtml_examples.md', 'r', encoding="utf-8") as f:
+        markdown_text = f.read()
+    logger.info(f"markdown text: {markdown_text}")
     rendered_html = render_with_rawhtml(markdown_text)
     logger.info(f"the rendered html:\n{rendered_html}")
     
