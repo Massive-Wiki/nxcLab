@@ -48,11 +48,12 @@ def main():
 {< /div >}
 
 ## Example 2
-
-{< p style="color:red;" >}
+{< p style="color:blue;" >}
 This is red!
 {< /p >}
-    """
+
+The End!  
+"""
     rendered_html = render_with_rawhtml(markdown_text)
     logger.info(f"the rendered html:\n{rendered_html}")
     
