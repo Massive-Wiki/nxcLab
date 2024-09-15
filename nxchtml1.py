@@ -1,6 +1,6 @@
 from mistletoe import Document
 from mistletoe.html_renderer import HtmlRenderer
-from mistletoe.span_token import SpanToken
+from mistletoe import block_token, span_token
 import re
 
 # Set up logging
@@ -8,10 +8,22 @@ import logging, os
 logging.basicConfig(level=os.environ.get('LOGLEVEL','INFO').upper())
 logger = logging.getLogger(__name__)
 
-class NXCHtml(SpanToken):
-    pattern = re.compile(r"(?s)\{< div ([^<]*) >\}\n(.*?)\n\{< /div >\}")
+class NXCHtml(block_token.BlockToken):
+    """
+    NXCHtml token. ?
+    """
+#    pattern = re.compile(r"(?s)\{< div ([^<]*) >\}\n(.*?)\n\{< /div >\}")
+    pattern = r"\{<\s*([a-z]+)\s*[^>]*\>\}(?:\n|.)*?\{<\s*/\1\s*\>\}"
     def __init__(self, match):
-        logger.info(f"NXCHtml match: {match.group(1)}")
+        logger.info(f"NXCHtml match: {match}")
+
+    @property
+    def content(self):
+        return self.children[0].content
+    
+    @staticmethod
+    def start(line):
+        return line
 
 class NXCHtmlRenderer(HtmlRenderer):
     def __init__(self):
@@ -20,12 +32,13 @@ class NXCHtmlRenderer(HtmlRenderer):
 
     def render_nxc_html(self, token):
         logger.info(f"render_nxchtml token: {token}")
-        template = '{inner}>'
-        inner = self.render_inner(token)
-        return template.format(inner=inner)
+#        template = '{inner}>'
+#        inner = self.render_inner(token)
+#        return template.format(inner=inner)
+        return 'we have nothing'
     
 def render_with_nxchtml(markdown):
-    logger.debug(f"render_with_nxchtml markdown: {markdown}")
+    logger.info(f"render_with_nxchtml markdown: \n{markdown}")
     with NXCHtmlRenderer() as renderer:
         return renderer.render(Document(markdown))
     
@@ -39,7 +52,7 @@ def main():
 #        rawhtml_input = args.input
     with open(nxchtml_input, 'r', encoding="utf-8") as f:
         markdown_text = f.read()
-    logger.info(f"markdown text: {markdown_text}")
+    logger.debug(f"markdown text: {markdown_text}")
     rendered_html = render_with_nxchtml(markdown_text)
     print(f"the rendered html:\n{rendered_html}")
     
