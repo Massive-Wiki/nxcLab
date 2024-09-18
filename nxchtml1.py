@@ -32,6 +32,7 @@ class NXCHtmlRenderer(HtmlRenderer):
 
     def render_nxc_html(self, token):
         logger.info(f"render_nxchtml token: {token}")
+#        logger.info(f"token target: {token.target}")
 #        template = '{inner}>'
 #        inner = self.render_inner(token)
 #        return template.format(inner=inner)
