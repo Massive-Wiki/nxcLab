@@ -4,10 +4,18 @@ from mistletoe.span_token import SpanToken
 from mistletoe.block_token import BlockToken
 
 import re
+
 # Set up logging
 import logging, os
 logging.basicConfig(level=os.environ.get('LOGLEVEL','INFO').upper())
 logger = logging.getLogger(__name__)
+
+#setup argparse
+import argparse
+def init_argparse():
+    parser = argparse.ArgumentParser(description='Experiments with raw html rendering')
+    parser.add_argument('--input', '-i', required=False, help='path to example/test markdown file')
+    return parser
 
 class CurlybraceTag(BlockToken):
     pattern = re.compile(r'\{\<\s([^>]*)\s\>\}')
@@ -37,8 +45,21 @@ def render_with_curlybraces(markdown):
         return renderer.render(Document(markdown))
     
 def main():
+    argparser = init_argparse()
+    args = argparser.parse_args()
+    logger.debug(f"parsed args: {args}")
+
+    example_input = 'nxc_ex3.md'
+    if args.input:
+        example_input = args.input
+    with open(example_input, 'r', encoding="utf-8") as f:
+        markdown_text = f.read()
+    logger.debug(f"markdown text: {markdown_text}")
+    rendered_html = render_with_curlybraces(markdown_text)
+    print(f"the rendered html:\n{rendered_html}")
+
 # Test the extension
-    markdown_text = """
+    inline_text = """
 # Example 1
 
 {< div class="navlink" >}
@@ -54,8 +75,8 @@ def main():
 This is red!
 {< /p >}
 """
-    rendered_html = render_with_curlybraces(markdown_text)
-    print("rendered html:\n", rendered_html)
+    rendered_html = render_with_curlybraces(inline_text)
+    print("the inline text rendered html:\n", rendered_html)
     
 if __name__ == '__main__':
     exit(main())
