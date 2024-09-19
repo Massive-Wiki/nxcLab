@@ -15,3 +15,9 @@ Another div content
 More content
 {< /div >}
 
+# Example with lists and links
+
+{< div class="navlink" >}
+- [Home](README)
+- [[Jankifiers]]
+{< /div >}
