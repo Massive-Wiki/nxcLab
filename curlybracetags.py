@@ -35,8 +35,11 @@ class CurlybraceTagRenderer(HtmlRenderer):
     def render_curlybrace_tag(self, token):
         logger.debug(f"render_curlybrace_tag token: {token}")
         logger.info(f"token target: {token.target}")
-        template = '<{target}>'
-        target = token.target
+        if len(token.target) == 1:
+            target = token.target[0].replace('{< ','<').replace(' >}\n','>')
+        else:
+            target = token.target
+        template = '{target}'
         return template.format(target=target)
     
 def render_with_curlybraces(markdown):
