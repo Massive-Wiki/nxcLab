@@ -7,7 +7,7 @@ import re
 
 # Set up logging
 import logging, os
-logging.basicConfig(level=os.environ.get('LOGLEVEL','INFO').upper())
+logging.basicConfig(level=os.environ.get('LOGLEVEL','WARNING').upper())
 logger = logging.getLogger(__name__)
 
 #setup argparse
@@ -21,7 +21,7 @@ class RawHtml(BlockToken):
     pattern = re.compile(r'\{\< ([^>]*) \>\}')
 
     def __init__(self, match):
-        logger.info(f"RawHtml match: {match}")
+        logger.debug(f"RawHtml match: {match}")
         self.target = match
         
     @staticmethod
@@ -34,14 +34,14 @@ class RawHtmlRenderer(HtmlRenderer):
 
     def render_raw_html(self, token):
         logger.debug(f"render_raw_html token: {token}")
-        logger.info(f"token target: {token.target}")
+        logger.debug(f"token target: {token.target}")
         if len(token.target) == 1:
             target = token.target[0].replace('{< ','<').replace(' >}\n','>')
         elif len(token.target) >= 3:
-            target_tag_start = token.target[0].replace('{< ','<').replace(' >}','>')
-            target_tag_end = token.target[-1].replace('{< ','<').replace(' >}\n','>')
-            target_between_tags = ''.join(token.target[1:-1])
-            target = f"{target_tag_start}{target_between_tags}{target_tag_end}"
+            tag_start = token.target[0].replace('{< ','<').replace(' >}','>')
+            tag_end = token.target[-1].replace('{< ','<').replace(' >}\n','>')
+            between_tags = ''.join(token.target[1:-1])
+            target = f"{tag_start}{between_tags}{tag_end}"
         else:
             target = token.target
         template = '{target}'
@@ -64,7 +64,7 @@ def main():
         markdown_text = f.read()
     logger.debug(f"markdown text: {markdown_text}")
     rendered_html = render_with_rawhtml(markdown_text)
-    print(f"the rendered html:\n{rendered_html}")
+    print(f"\nTHE RENDERED html:\n{rendered_html}")
 
 # Test the extension
     inline_text = """
@@ -84,7 +84,7 @@ This is red!
 {< /p >}
 """
     rendered_html = render_with_rawhtml(inline_text)
-    print("the inline text rendered html:\n", rendered_html)
+    print("\nTHE INLINE TEXT RENDERED html:\n", rendered_html)
     
 if __name__ == '__main__':
     exit(main())

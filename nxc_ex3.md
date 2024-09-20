@@ -22,7 +22,7 @@ More content
 - [[Jankifiers]]
 {< /div >}
 
-# example blue (reveals an extra p-tag issue)
+# example blue
 {< p style="color:blue" >}
 
 And this is blue?!
