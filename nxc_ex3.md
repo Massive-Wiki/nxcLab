@@ -21,3 +21,10 @@ More content
 - [Home](README)
 - [[Jankifiers]]
 {< /div >}
+
+# example blue (reveals an extra p-tag issue)
+{< p style="color:blue" >}
+
+And this is blue?!
+
+{< /p >}
