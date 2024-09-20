@@ -37,6 +37,11 @@ class RawHtmlRenderer(HtmlRenderer):
         logger.info(f"token target: {token.target}")
         if len(token.target) == 1:
             target = token.target[0].replace('{< ','<').replace(' >}\n','>')
+        elif len(token.target) >= 3:
+            target_tag_start = token.target[0].replace('{< ','<').replace(' >}','>')
+            target_tag_end = token.target[-1].replace('{< ','<').replace(' >}\n','>')
+            target_between_tags = ''.join(token.target[1:-1])
+            target = f"{target_tag_start}{target_between_tags}{target_tag_end}"
         else:
             target = token.target
         template = '{target}'
