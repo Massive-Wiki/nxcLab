@@ -40,7 +40,8 @@ class RawHtmlRenderer(HtmlRenderer):
         elif len(token.target) >= 3:
             tag_start = token.target[0].replace('{< ','<').replace(' >}','>')
             tag_end = token.target[-1].replace('{< ','<').replace(' >}\n','>')
-            between_tags = ''.join(token.target[1:-1])
+#            between_tags = ''.join(token.target[1:-1])
+            between_tags = self.render(Document(''.join(token.target[1:-1])))
             target = f"{tag_start}{between_tags}{tag_end}"
         else:
             target = token.target
