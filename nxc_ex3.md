@@ -1,21 +1,25 @@
-# raw example 3
+# rawhtml in markdown test note
+ - this note contains some mix of `nxc` `rawhtml` markup and Markdown text.
+   - one test is whether these patterns can be handled in `MassiveWikiRenderer`
+
+## raw example 3
 
 Some text before
 
 {< div class="example" id="test" >}
-Line 1 inside the div
-Line 2 inside the div
-Line 3 inside the div
+Line 1 inside the div  
+Line 2 inside the div  
+Line 3 inside the div  
 {< /div >}
 
 Some text after
 
 {< div another="example" >}
-Another div content
+Another div content; and  
 More content
 {< /div >}
 
-# Example with lists and links
+## example with lists and links
 
 {< div class="navlink" >}
 - [Home](README)
@@ -23,8 +27,4 @@ More content
 {< /div >}
 
 # example blue
-{< p style="color:blue" >}
-
-And this is blue?!
-
-{< /p >}
+{< span style="color:blue" >}And this is blue?!{< /span >}
