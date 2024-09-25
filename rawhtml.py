@@ -83,6 +83,14 @@ def main():
 {< p style="color:red;" >}
 This is red!
 {< /p >}
+
+You may notice that the text will not be rendered in red. This is because
+<p> tags cannot be nested. Mistletoe will throw <p></p> around "This is red!",
+and the browser will close the containing <p>, effectively producing this:
+
+<p style="color:red;"></p>
+<p>This is red!</p>
+<p></p>
 """
     rendered_html = render_with_rawhtml(inline_text)
     print("\nTHE INLINE TEXT RENDERED html:\n", rendered_html)
