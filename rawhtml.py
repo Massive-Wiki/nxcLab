@@ -86,7 +86,8 @@ This is red!
 
 You may notice that the text will not be rendered in red. This is because
 <p> tags cannot be nested. Mistletoe will throw <p></p> around "This is red!",
-and the browser will close the containing <p>, effectively producing this:
+and the browser will automatically close the containing <p></p> around the
+internal <p></p>, effectively producing this:
 
 <p style="color:red;"></p>
 <p>This is red!</p>
