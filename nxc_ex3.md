@@ -22,7 +22,7 @@ More content
 ## example with lists and links
 
 {< div class="navlink" >}
-- [Home](README)
+- [Home](/README.html)
 - [[Jankifiers]]
 {< /div >}
 
