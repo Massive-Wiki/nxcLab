@@ -1,5 +1,4 @@
 # rawhtml
-\# $Id$
 
 ## RawHtml Blocks  
 
