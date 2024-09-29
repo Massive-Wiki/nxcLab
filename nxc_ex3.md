@@ -17,7 +17,7 @@ Some text after
 {< section >}
 A section content; and
 more content  
-Enough.
+Enough, already.
 {< /section >}
 
 ## example with lists and links
@@ -26,4 +26,9 @@ Enough.
 - [Home](/README.html)
 - [[Jankifiers]]
 {< /div >}
+
+## inline span test
+ - This text, is <span style="color:red;">_special_</span>, and is
+   rendered just fine!  
+
 
