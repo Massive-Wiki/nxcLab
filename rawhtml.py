@@ -1,5 +1,4 @@
 #!/usr/bin/env python3
-# $Id$
 
 from mistletoe import Document
 from mistletoe.html_renderer import HtmlRenderer
@@ -81,18 +80,9 @@ def main():
 
 ## Example 2
 
-{< p style="color:red;" >}
-This is red!
-{< /p >}
-
-You may notice that the text will not be rendered in red. This is because
-<p> tags cannot be nested. Mistletoe will throw <p></p> around "This is red!",
-and the browser will automatically close the containing <p></p> around the
-internal <p></p>, effectively producing this:
-
-<p style="color:red;"></p>
-<p>This is red!</p>
-<p></p>
+{< section >}
+<p style="color:red">This is red!</p>
+{< /section >}
 """
     rendered_html = render_with_rawhtml(inline_text)
     print("\nTHE INLINE TEXT RENDERED html:\n", rendered_html)

@@ -2,7 +2,7 @@
  - this note contains some mix of `nxc` `rawhtml` markup and Markdown text.
    - one test is whether these patterns can be handled in `MassiveWikiRenderer`
 
-## raw example 3
+## example 1
 
 Some text before
 
@@ -14,10 +14,11 @@ Line 3 inside the div
 
 Some text after
 
-{< div another="example" >}
-Another div content; and  
-More content
-{< /div >}
+{< section >}
+A section content; and
+more content  
+Enough.
+{< /section >}
 
 ## example with lists and links
 
@@ -26,5 +27,3 @@ More content
 - [[Jankifiers]]
 {< /div >}
 
-# example blue
-{< span style="color:blue" >}And this is blue?!{< /span >}
