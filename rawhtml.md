@@ -29,4 +29,19 @@ is rendered by (extended) Mistletoe as:
 </div>
 ```
 
+-----
+## Notes  
+
+- This extension works with many block-level elements, such as "div",
+  "section", "article", etc.  
+  TODO: create test cases for these elements
+- The utility of this extension is limited; maybe too limited.  
+  
+- HTML inline elements, such as "span", can be embedded in Markdown,
+  and are rendered appropriately by Mistletoe.  
+
+- The paragraph element, "p", is best not embedded in
+  Markdown. Paragraphs are semantic objects and paragraph syntax is
+  well defined in Markdown.  
+
 
